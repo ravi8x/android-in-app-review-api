@@ -1,12 +1,11 @@
 package info.androidhive.rateappapi;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.play.core.review.ReviewInfo;
@@ -61,23 +60,33 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Showing native dialog with three buttons to review the app
-     * Redirect user to playstore to review the app
+     * Redirect user to PlayStore to review the app
      */
     private void showRateAppFallbackDialog() {
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.rate_app_title)
                 .setMessage(R.string.rate_app_message)
-                .setPositiveButton(R.string.rate_btn_pos, (dialog, which) -> {
-
-                })
+                .setPositiveButton(R.string.rate_btn_pos, (dialog, which) -> redirectToPlayStore())
                 .setNegativeButton(R.string.rate_btn_neg,
                         (dialog, which) -> {
+                            // take action when pressed not now
                         })
                 .setNeutralButton(R.string.rate_btn_nut,
                         (dialog, which) -> {
+                            // take action when pressed remind me later
                         })
                 .setOnDismissListener(dialog -> {
                 })
                 .show();
+    }
+
+    // redirecting user to PlayStore
+    public void redirectToPlayStore() {
+        final String appPackageName = getPackageName();
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (ActivityNotFoundException exception) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
     }
 }
