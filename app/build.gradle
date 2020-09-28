@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "hindu.god.wallpapers.songs"
+        applicationId "info.androidhive.rateappapi"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1

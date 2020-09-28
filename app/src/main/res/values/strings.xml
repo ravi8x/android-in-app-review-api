@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rate App API</string>
+    <string name="app_name">Androidhive</string>
     <string name="rate_app_title">Rate App</string>
     <string name="rate_app_message">If you are enjoying our app, please take a moment to rate it on PlayStore. Thanks for your support!</string>
     <string name="rate_btn_pos">Rate Now</string>
