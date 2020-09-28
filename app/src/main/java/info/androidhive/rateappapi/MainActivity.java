@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_rate_app).setOnClickListener(view -> showRateApp());
     }
 
+    /**
+     * Shows rate app bottom sheet using In-App review API
+     * The bottom sheet might or might not shown depending on the Quotas and limitations
+     * https://developer.android.com/guide/playcore/in-app-review#quotas
+     * We show fallback dialog if there is any error
+     */
     public void showRateApp() {
         Task<ReviewInfo> request = reviewManager.requestReviewFlow();
         request.addOnCompleteListener(task -> {
@@ -47,12 +53,16 @@ public class MainActivity extends AppCompatActivity {
                 });
             } else {
                 // There was some problem, continue regardless of the result.
-                // show native rate app dialog
+                // show native rate app dialog on error
                 showRateAppFallbackDialog();
             }
         });
     }
 
+    /**
+     * Showing native dialog with three buttons to review the app
+     * Redirect user to playstore to review the app
+     */
     private void showRateAppFallbackDialog() {
         new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.rate_app_title)
