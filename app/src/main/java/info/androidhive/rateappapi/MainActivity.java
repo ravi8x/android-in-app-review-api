@@ -7,11 +7,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Shows rate app bottom sheet using In-App review API
      * The bottom sheet might or might not shown depending on the Quotas and limitations
-     * https://developer.android.com/guide/playcore/in-app-review#quotas
+     * <a href="https://developer.android.com/guide/playcore/in-app-review#quotas">...</a>
      * We show fallback dialog if there is any error
      */
     public void showRateApp() {
